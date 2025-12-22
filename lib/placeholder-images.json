@@ -1,0 +1,52 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A clean, modern pharmacy interior",
+      "imageUrl": "https://images.unsplash.com/photo-1631367771698-606007aecd52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwaGFybWFjeSUyMGludGVyaW9yfGVufDB8fHx8MTc2NjI2MzA3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pharmacy interior"
+    },
+    {
+      "id": "pain-relief-1",
+      "description": "A package of pain relief tablets.",
+      "imageUrl": "https://images.unsplash.com/photo-1641561421178-db8542057811?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWVkaWNpbmUlMjBwaWxsc3xlbnwwfHx8fDE3NjYyMTMxODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medicine pills"
+    },
+    {
+      "id": "allergy-1",
+      "description": "A package of allergy relief medication.",
+      "imageUrl": "https://images.unsplash.com/photo-1628771065518-0d82f1938462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtZWRpY2luZSUyMGJvdHRsZXxlbnwwfHx8fDE3NjYzMDY3OTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medicine bottle"
+    },
+    {
+      "id": "vitamins-1",
+      "description": "A bottle of vitamin D3 supplements.",
+      "imageUrl": "https://images.unsplash.com/photo-1763668331599-487470fb85b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx2aXRhbWluJTIwYm90dGxlfGVufDB8fHx8MTc2NjMwNjc5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "vitamin bottle"
+    },
+    {
+      "id": "cold-flu-1",
+      "description": "A box of cold and flu medicine.",
+      "imageUrl": "https://images.unsplash.com/photo-1648712788983-11311123c622?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZWRpY2luZSUyMGJveHxlbnwwfHx8fDE3NjYyMzE0MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medicine box"
+    },
+    {
+      "id": "digestive-health-1",
+      "description": "A bottle of antacid tablets.",
+      "imageUrl": "https://images.unsplash.com/photo-1609720597021-1498d6216a55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtZWRpY2luZSUyMHRhYmxldHN8ZW58MHx8fHwxNzY2MzA2Nzk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medicine tablets"
+    },
+    {
+      "id": "pharmacy-1",
+      "description": "Exterior of a modern pharmacy.",
+      "imageUrl": "https://images.unsplash.com/photo-1760115290312-4c0637df790a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwaGFybWFjeSUyMGV4dGVyaW9yfGVufDB8fHx8MTc2NjMwNjc5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pharmacy exterior"
+    },
+    {
+      "id": "pharmacy-2",
+      "description": "Interior of a well-lit pharmacy.",
+      "imageUrl": "https://images.unsplash.com/photo-1652295372392-3171ab2c0e01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaGFybWFjeSUyMGluc2lkZXxlbnwwfHx8fDE3NjYzMDY3OTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pharmacy inside"
+    }
+  ]
+}
