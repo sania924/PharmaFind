@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <h5 className="flex items-center text-white font-semibold text-xl mb-6">
             
-              PharmaSleek
+              PharmaFind
             </h5>
             <p className="text-sm leading-relaxed">
               Your dedicated partner in achieving optimal health and wellness.
