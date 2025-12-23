@@ -135,7 +135,7 @@ export default function ContactSection() {
                     Visit Us:
                   </Typography>
                   <Typography variant="body2" className="text-gray-600">
-                    123 Health St, Wellness City, HC 45678, USA
+                   123 Health Street, Wellness District, London WC1A 1AA, United Kingdom
                   </Typography>
                 </Box>
               </Box>
@@ -151,7 +151,7 @@ export default function ContactSection() {
                   </Typography>
                   <Typography variant="body2" className="text-gray-600">
                     <a href="tel:+15551234567" className="text-blue-600 hover:underline">
-                      +1 (555) 123-4567
+                     +44 7520 645778 
                     </a>
                   </Typography>
                 </Box>
@@ -192,17 +192,18 @@ export default function ContactSection() {
               </Box>
             </Box>
 
-            {/* Map */}
-            <Box className="rounded-xl overflow-hidden shadow-lg h-96">
-              <iframe
-                title="Google Maps Location of PharmaSleek"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2199008396003!2d-73.98513088459314!3d40.75048187932787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259015532470d%3A0x5c6f395012f052a0!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1620056789012!5m2!1sen!2sus"
-                className="w-full h-full border-0"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </Box>
+        {/* Map */}
+<Box className="rounded-xl overflow-hidden shadow-lg h-96">
+  <iframe
+    title="Google Maps Location of PharmaSleek"
+    src="https://www.google.com/maps?q=123+Health+Street,+Wellness+District,+London+WC1A+1AA,+United+Kingdom&output=embed"
+    className="w-full h-full border-0"
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  />
+</Box>
+
           </Box>
         </Box>
       </Box>
