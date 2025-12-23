@@ -12,11 +12,9 @@ import {
   Typography,
   Button,
   Box,
-  TextField,
   IconButton,
   Divider,
   Skeleton,
-  Alert,
 } from "@mui/material";
 import {
   Delete,
@@ -25,6 +23,7 @@ import {
   Remove,
 } from "@mui/icons-material";
 import type { InventoryItem } from "@/lib/definitions";
+import { formatGBP } from "@/lib/formatters"; // ✅ IMPORT
 
 type EnrichedCartItem = {
   medicine: Awaited<ReturnType<typeof getMedicineById>>;
@@ -51,7 +50,11 @@ export default function CartPage() {
           return { ...item, medicine, pharmacy, inventory };
         })
       );
-      setEnrichedCart(enrichedItems.filter(i => i.medicine && i.pharmacy && i.inventory) as EnrichedCartItem[]);
+      setEnrichedCart(
+        enrichedItems.filter(
+          i => i.medicine && i.pharmacy && i.inventory
+        ) as EnrichedCartItem[]
+      );
       setLoading(false);
     };
 
@@ -77,19 +80,14 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <Box className="container mx-auto px-4 md:px-6 py-12 text-center">
-        <ShoppingBag sx={{ fontSize: 64, color: 'text.secondary', mx: 'auto', mb: 2 }} />
-        <Typography variant="h3" component="h1" className="font-bold mb-2">
+        <ShoppingBag sx={{ fontSize: 64, color: "text.secondary", mx: "auto", mb: 2 }} />
+        <Typography variant="h3" className="font-bold mb-2">
           Your Cart is Empty
         </Typography>
         <Typography variant="body1" color="text.secondary" className="mb-6">
           Looks like you haven't added anything to your cart yet.
         </Typography>
-        <Button
-          component={Link}
-          href="/routes/medicines"
-          variant="contained"
-          size="large"
-        >
+        <Button component={Link} href="/routes/medicines" variant="contained" size="large">
           Start Shopping
         </Button>
       </Box>
@@ -98,10 +96,12 @@ export default function CartPage() {
 
   return (
     <Box className="container mx-auto px-4 md:px-6 py-8">
-      <Typography variant="h3" component="h1" className="font-bold mb-6">
+      <Typography variant="h3" className="font-bold mb-6">
         Shopping Cart
       </Typography>
+
       <Box className="grid md:grid-cols-3 gap-8 items-start">
+        {/* CART ITEMS */}
         <Box className="md:col-span-2 space-y-4">
           {enrichedCart.map((item) => (
             <Card key={`${item.medicineId}-${item.pharmacyId}`} className="shadow-md">
@@ -117,38 +117,59 @@ export default function CartPage() {
                       />
                     )}
                   </Box>
+
                   <Box className="flex-grow">
-                    <Typography variant="h6" component="p" className="font-semibold">
+                    <Typography variant="h6" className="font-semibold">
                       {item.medicine?.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       From: {item.pharmacy?.name}
                     </Typography>
+
+                    {/* ✅ PRICE */}
                     <Typography variant="body2" className="font-bold text-primary">
-                      ${item.inventory?.price.toFixed(2)}
+                      {formatGBP(item.inventory?.price ?? 0)}
                     </Typography>
                   </Box>
+
                   <Box className="flex items-center gap-2">
                     <Box className="flex items-center border rounded-md">
                       <IconButton
                         size="small"
-                        onClick={() => updateQuantity(item.medicineId, item.pharmacyId, item.quantity - 1)}
+                        onClick={() =>
+                          updateQuantity(
+                            item.medicineId,
+                            item.pharmacyId,
+                            item.quantity - 1
+                          )
+                        }
                         disabled={item.quantity <= 1}
                       >
                         <Remove fontSize="small" />
                       </IconButton>
+
                       <Typography className="px-3 py-1 min-w-12 text-center">
                         {item.quantity}
                       </Typography>
+
                       <IconButton
                         size="small"
-                        onClick={() => updateQuantity(item.medicineId, item.pharmacyId, item.quantity + 1)}
+                        onClick={() =>
+                          updateQuantity(
+                            item.medicineId,
+                            item.pharmacyId,
+                            item.quantity + 1
+                          )
+                        }
                       >
                         <Add fontSize="small" />
                       </IconButton>
                     </Box>
+
                     <IconButton
-                      onClick={() => removeFromCart(item.medicineId, item.pharmacyId)}
+                      onClick={() =>
+                        removeFromCart(item.medicineId, item.pharmacyId)
+                      }
                       color="error"
                     >
                       <Delete />
@@ -160,28 +181,32 @@ export default function CartPage() {
           ))}
         </Box>
 
+        {/* ORDER SUMMARY */}
         <Box className="md:col-span-1">
           <Card className="shadow-md sticky top-20">
             <CardHeader>
-              <Typography variant="h6" component="h2">
-                Order Summary
-              </Typography>
+              <Typography variant="h6">Order Summary</Typography>
             </CardHeader>
+
             <CardContent className="space-y-3">
               <Box className="flex justify-between">
                 <Typography variant="body2">Subtotal</Typography>
-                <Typography variant="body2">${subtotal.toFixed(2)}</Typography>
+                <Typography variant="body2">{formatGBP(subtotal)}</Typography>
               </Box>
+
               <Box className="flex justify-between">
                 <Typography variant="body2">Taxes (Est.)</Typography>
-                <Typography variant="body2">${tax.toFixed(2)}</Typography>
+                <Typography variant="body2">{formatGBP(tax)}</Typography>
               </Box>
+
               <Divider />
+
               <Box className="flex justify-between font-bold">
                 <Typography variant="body1">Total</Typography>
-                <Typography variant="body1">${total.toFixed(2)}</Typography>
+                <Typography variant="body1">{formatGBP(total)}</Typography>
               </Box>
             </CardContent>
+
             <Box className="p-4 pt-0 space-y-2">
               <Button
                 variant="contained"
@@ -190,10 +215,10 @@ export default function CartPage() {
                   alert("Order placed! (This is a demo)");
                   clearCart();
                 }}
-                className="bg-blue-600 hover:bg-blue-700"
               >
                 Place Order
               </Button>
+
               <Button
                 variant="outlined"
                 fullWidth

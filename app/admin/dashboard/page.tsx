@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "@/app/layout/header";
+import { CurrencyPound } from "@mui/icons-material";
 import {
   Card,
   CardContent,
@@ -20,6 +21,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+// Sample data
 const data = [
   { name: "Mon", orders: 20 },
   { name: "Tue", orders: 30 },
@@ -30,38 +32,60 @@ const data = [
   { name: "Sun", orders: 60 },
 ];
 
+// Helper function to format GBP
+const formatGBP = (amount: number) =>
+  amount.toLocaleString("en-GB", { style: "currency", currency: "GBP" });
+
 export default function AdminDashboardPage() {
   return (
-    <>
-      <Box className="space-y-6 p-6">
-        <Typography variant="h4" fontWeight="bold">
-          Admin Dashboard
-        </Typography>
+    <Box className="space-y-6 p-6">
+      <Typography variant="h4" fontWeight="bold">
+        Admin Dashboard
+      </Typography>
 
-        <Box className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <StatCard title="Total Revenue" value="$45,231.89" subtitle="+20.1% from last month" icon={<DollarSign />} />
-          <StatCard title="Total Orders" value="2,350" subtitle="+180.1% from last month" icon={<ShoppingCart />} />
-          <StatCard title="Pharmacies" value="3" subtitle="Registered Partner Pharmacies" icon={<Building />} />
-          <StatCard title="Products" value="5" subtitle="Unique medicines listed" icon={<Pill />} />
-        </Box>
-
-        <Card>
-          <CardHeader title="Weekly Orders" />
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={data}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="orders" fill="#1976d2" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
+      <Box className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <StatCard
+          title="Total Revenue"
+          value={formatGBP(45231.89)}
+          subtitle="+20.1% from last month"
+          icon={<CurrencyPound />} // You can replace icon with a £ icon if you like
+        />
+        <StatCard
+          title="Total Orders"
+          value="2,350"
+          subtitle="+180.1% from last month"
+          icon={<ShoppingCart />}
+        />
+        <StatCard
+          title="Pharmacies"
+          value="3"
+          subtitle="Registered Partner Pharmacies"
+          icon={<Building />}
+        />
+        <StatCard
+          title="Products"
+          value="5"
+          subtitle="Unique medicines listed"
+          icon={<Pill />}
+        />
       </Box>
-    </>
+
+      <Card>
+        <CardHeader title="Weekly Orders" />
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="orders" fill="#1976d2" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
 

@@ -1,4 +1,3 @@
-
 import { getOrdersForUser } from "@/lib/data";
 import { format } from "date-fns";
 import {
@@ -13,6 +12,14 @@ import {
   Box,
 } from "@mui/material";
 import { ExpandMore, ShoppingCart } from "@mui/icons-material";
+
+// Helper to format currency in GBP
+const formatCurrency = (amount: number) => {
+  return new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  }).format(amount);
+};
 
 export default async function OrdersPage() {
   const orders = await getOrdersForUser("u1"); // Assuming a single user for demo
@@ -38,7 +45,7 @@ export default async function OrdersPage() {
       </Typography>
       <Card className="shadow-md">
         <CardContent className="p-0">
-          {orders.map((order, index) => (
+          {orders.map((order) => (
             <Accordion key={order.id} className="border-b last:border-b-0">
               <AccordionSummary
                 expandIcon={<ExpandMore />}
@@ -77,14 +84,14 @@ export default async function OrdersPage() {
                         </Typography>
                       </Typography>
                       <Typography variant="body2">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        {formatCurrency(item.price * item.quantity)}
                       </Typography>
                     </Box>
                   ))}
                   <Divider className="my-2" />
                   <Box className="flex justify-between font-bold">
                     <Typography variant="body1">Total</Typography>
-                    <Typography variant="body1">${order.total.toFixed(2)}</Typography>
+                    <Typography variant="body1">{formatCurrency(order.total)}</Typography>
                   </Box>
                 </Box>
               </AccordionDetails>

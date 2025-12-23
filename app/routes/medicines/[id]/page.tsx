@@ -30,6 +30,7 @@ import {
   Add,
   Remove,
 } from "@mui/icons-material";
+import { formatGBP } from "@/lib/formatters";
 
 type PharmacyWithInventory = Pharmacy & { inventory: InventoryItem };
 
@@ -216,9 +217,9 @@ export default function MedicineDetailPage({
                     />
                   </CardHeader>
                   <CardContent className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <Typography variant="h4" className="font-bold text-primary">
-                      ${p.inventory.price.toFixed(2)}
-                    </Typography>
+                   <Typography variant="h4" className="font-bold text-primary">
+  {formatGBP(p.inventory.price)}
+</Typography>
                     <Box className="flex items-center gap-2">
                       <Box className="flex items-center gap-1 border rounded-md p-1">
                         <IconButton
