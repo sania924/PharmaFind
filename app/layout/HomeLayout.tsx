@@ -9,11 +9,9 @@ import Blog from './Blog';
 import Testimonials from './testimonals';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
-
 interface HomeLayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
-
 export default function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <>
@@ -36,3 +34,4 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
     </>
   );
 }
+
