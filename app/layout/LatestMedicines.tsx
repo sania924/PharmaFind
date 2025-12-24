@@ -66,14 +66,14 @@ export default function LatestMedicines() {
   return (
     <Box id="latest-medicines" className="py-20 bg-gray-50">
       <Container maxWidth="lg">
-        <Box className="text-center mb-12">
-          <Typography variant="h3" component="h2" className="font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-800">
             New Arrivals & Innovations
-          </Typography>
-          <Typography variant="body1" className="text-gray-600 max-w-2xl mx-auto">
+          </h2>
+          <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
             Stay ahead with the latest advancements in pharmaceutical care and wellness products.
-          </Typography>
-        </Box>
+          </p>
+        </div>
         <Box sx={{ position: 'relative', px: { xs: 0, md: 4 } }}>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
