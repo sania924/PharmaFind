@@ -38,6 +38,7 @@ const formatGBP = (amount: number) =>
 
 export default function AdminDashboardPage() {
   return (
+    
     <Box className="space-y-6 p-6">
       <Typography variant="h4" fontWeight="bold">
         Admin Dashboard

@@ -59,10 +59,24 @@ const Header = () => {
           </Button>
           <Button
             component={Link}
-            href="/routes/latest-medicines"
+            href="/#latest-medicines"
             className="text-gray-700 font-semibold px-4 py-2 transition-all duration-300 hover:text-blue-600 hover:-translate-y-1 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-1 after:left-1/2 after:transform after:-translate-x-1/2 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-3/4"
           >
             New Arrivals
+          </Button>
+          <Button
+            component={Link}
+            href="/#offers"
+            className="text-gray-700 font-semibold px-4 py-2 transition-all duration-300 hover:text-blue-600 hover:-translate-y-1 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-1 after:left-1/2 after:transform after:-translate-x-1/2 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-3/4"
+          >
+            Offers
+          </Button>
+          <Button
+            component={Link}
+            href="/#blog"
+            className="text-gray-700 font-semibold px-4 py-2 transition-all duration-300 hover:text-blue-600 hover:-translate-y-1 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-1 after:left-1/2 after:transform after:-translate-x-1/2 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-3/4"
+          >
+            Blog
           </Button>
           <Button
             component={Link}
@@ -115,8 +129,18 @@ const Header = () => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component={Link} href="/routes/latest-medicines" onClick={() => setDrawerOpen(false)}>
+              <ListItemButton component={Link} href="/#latest-medicines" onClick={() => setDrawerOpen(false)}>
                 <ListItemText primary="New Arrivals" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component={Link} href="/#offers" onClick={() => setDrawerOpen(false)}>
+                <ListItemText primary="Offers" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component={Link} href="/#blog" onClick={() => setDrawerOpen(false)}>
+                <ListItemText primary="Blog" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
