@@ -49,8 +49,9 @@ export default function AdminDashboardPage() {
           title="Total Revenue"
           value={formatGBP(45231.89)}
           subtitle="+20.1% from last month"
-          icon={<CurrencyPound />} // You can replace icon with a £ icon if you like
+          icon={<CurrencyPound />} // You can do  replace icon with a £ icon if you like
         />
+        
         <StatCard
           title="Total Orders"
           value="2,350"
