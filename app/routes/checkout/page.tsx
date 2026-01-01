@@ -37,7 +37,7 @@ interface EnrichedCartItem {
 
 export default function CheckoutPage() {
   const { data: session, status } = useSession();
-  const { cart, clearCart } = useCart();
+  const { items: cart, clearCart } = useCart();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [enrichedCart, setEnrichedCart] = useState<EnrichedCartItem[]>([]);

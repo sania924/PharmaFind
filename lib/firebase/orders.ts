@@ -10,6 +10,7 @@ import {
   query,
   where,
   getDocs,
+  updateDoc,
 } from 'firebase/firestore';
 import { db } from './config';
 import type { Order } from '../definitions';
@@ -124,7 +125,7 @@ export async function getOrderById(orderId: string): Promise<Order | null> {
       ...data,
       createdAt: data.createdAt?.toDate?.()?.toISOString() || data.createdAt,
       deliveredAt: data.deliveredAt?.toDate?.()?.toISOString() || data.deliveredAt,
-    } as Order;
+    } as unknown as Order;
   } catch (error) {
     console.error('Error getting order:', error);
     return null;

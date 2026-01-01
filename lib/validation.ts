@@ -50,7 +50,7 @@ export const userSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters').max(100, 'Password is too long'),
   name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
-  role: z.enum(['user', 'admin'], { errorMap: () => ({ message: 'Role must be either user or admin' }) }),
+  role: z.enum(['user', 'admin']),
 });
 
 // Login validation schema
@@ -67,9 +67,7 @@ export const searchParamsSchema = z.object({
 });
 
 // Order status validation
-export const orderStatusSchema = z.enum(['Pending', 'Completed', 'Cancelled'], {
-  errorMap: () => ({ message: 'Invalid order status' }),
-});
+export const orderStatusSchema = z.enum(['Pending', 'Completed', 'Cancelled']);
 
 // Cart item validation
 export const cartItemSchema = z.object({
@@ -105,7 +103,7 @@ export function validateData<T>(schema: z.ZodSchema<T>, data: unknown): { succes
     return { success: true, data: validated };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const firstError = error.errors[0];
+      const firstError = error.issues[0];
       return { success: false, error: firstError.message };
     }
     return { success: false, error: 'Validation failed' };
