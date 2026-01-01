@@ -308,9 +308,12 @@ export default function AdminOrdersPage() {
               <Typography variant="body2" color="text.secondary" gutterBottom>
                 Order ID: {selectedOrder.id}
               </Typography>
-              <Typography variant="body2" color="text.secondary" gutterBottom>
-                Current Status: <Chip label={selectedOrder.status} size="small" color={getStatusColor(selectedOrder.status)} />
-              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                <Typography variant="body2" color="text.secondary">
+                  Current Status:
+                </Typography>
+                <Chip label={selectedOrder.status} size="small" color={getStatusColor(selectedOrder.status)} />
+              </Box>
               <FormControl fullWidth sx={{ mt: 3 }}>
                 <InputLabel>New Status</InputLabel>
                 <Select
