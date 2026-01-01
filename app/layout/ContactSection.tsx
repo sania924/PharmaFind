@@ -373,7 +373,7 @@ export default function ContactSection() {
         </div>
 
         {/* Map Section */}
-        <div className="mapSection">
+        {/* <div className="mapSection">
           <h2>Find Us on the Map</h2>
           <div className="mapContainer">
             <iframe
@@ -387,7 +387,7 @@ export default function ContactSection() {
               title="Pharmacy Location Map"
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -3,49 +3,49 @@
     {
       "id": "hero",
       "description": "A clean, modern pharmacy interior",
-      "imageUrl": "https://images.unsplash.com/photo-1631367771698-606007aecd52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwaGFybWFjeSUyMGludGVyaW9yfGVufDB8fHx8MTc2NjI2MzA3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEE5MEUyIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmZmZmYiPlBoYXJtYWN5IEludGVyaW9yPC90ZXh0Pjwvc3ZnPg==",
       "imageHint": "pharmacy interior"
     },
     {
       "id": "pain-relief-1",
       "description": "A package of pain relief tablets.",
-      "imageUrl": "https://images.unsplash.com/photo-1641561421178-db8542057811?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWVkaWNpbmUlMjBwaWxsc3xlbnwwfHx8fDE3NjYyMTMxODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTc0QzNDIi8+PHRleHQgeD0iNTAlIiB5PSIzNSUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNjAiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyI+8J+SijwvdGV4dD48dGV4dCB4PSI1MCUiIHk9IjU1JSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZmZmZiI+UGFpbiBSZWxpZWY8L3RleHQ+PC9zdmc+",
       "imageHint": "medicine pills"
     },
     {
       "id": "allergy-1",
       "description": "A package of allergy relief medication.",
-      "imageUrl": "https://images.unsplash.com/photo-1628771065518-0d82f1938462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtZWRpY2luZSUyMGJvdHRsZXxlbnwwfHx8fDE3NjYzMDY3OTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzQ5OERCIi8+PHRleHQgeD0iNTAlIiB5PSIzNSUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNjAiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyI+8J+SqzwvdGv4dD48dGV4dCB4PSI1MCUiIHk9IjU1JSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZmZmZiI+QWxsZXJneSBSZWxpZWY8L3RleHQ+PC9zdmc+",
       "imageHint": "medicine bottle"
     },
     {
       "id": "vitamins-1",
       "description": "A bottle of vitamin D3 supplements.",
-      "imageUrl": "https://images.unsplash.com/photo-1763668331599-487470fb85b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx2aXRhbWluJTIwYm90dGxlfGVufDB8fHx8MTc2NjMwNjc5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjM5QzEyIi8+PHRleHQgeD0iNTAlIiB5PSIzNSUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNjAiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyI+4piA77iPPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNTUlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjZmZmZmZmIj5WaXRhbWluczwvdGV4dD48L3N2Zz4=",
       "imageHint": "vitamin bottle"
     },
     {
       "id": "cold-flu-1",
       "description": "A box of cold and flu medicine.",
-      "imageUrl": "https://images.unsplash.com/photo-1648712788983-11311123c622?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZWRpY2luZSUyMGJveHxlbnwwfHx8fDE3NjYyMzE0MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjOUI1OUI2Ii8+PHRleHQgeD0iNTAlIiB5PSIzNSUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNjAiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyI+8J+kgjwvdGV4dD48dGV4dCB4PSI1MCUiIHk9IjU1JSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZmZmZiI+Q29sZCAmYW1wOyBGbHU8L3RleHQ+PC9zdmc+",
       "imageHint": "medicine box"
     },
     {
       "id": "digestive-health-1",
       "description": "A bottle of antacid tablets.",
-      "imageUrl": "https://images.unsplash.com/photo-1609720597021-1498d6216a55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtZWRpY2luZSUyMHRhYmxldHN8ZW58MHx8fHwxNzY2MzA2Nzk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMUFCQzlDIi8+PHRleHQgeD0iNTAlIiB5PSIzNSUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNjAiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyI+8J+SijwvdGV4dD48dGV4dCB4PSI1MCUiIHk9IjU1JSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZmZmZiI+RGlnZXN0aXZlIEhlYWx0aDwvdGV4dD48L3N2Zz4=",
       "imageHint": "medicine tablets"
     },
     {
       "id": "pharmacy-1",
       "description": "Exterior of a modern pharmacy.",
-      "imageUrl": "https://images.unsplash.com/photo-1760115290312-4c0637df790a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwaGFybWFjeSUyMGV4dGVyaW9yfGVufDB8fHx8MTc2NjMwNjc5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMkMzRTUwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmZmZmYiPlBoYXJtYWN5PC90ZXh0Pjwvc3ZnPg==",
       "imageHint": "pharmacy exterior"
     },
     {
       "id": "pharmacy-2",
       "description": "Interior of a well-lit pharmacy.",
-      "imageUrl": "https://images.unsplash.com/photo-1652295372392-3171ab2c0e01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaGFybWFjeSUyMGluc2lkZXxlbnwwfHx8fDE3NjYzMDY3OTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzQ0OTVFIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmZmZmYiPlBoYXJtYWN5IEludGVyaW9yPC90ZXh0Pjwvc3ZnPg==",
       "imageHint": "pharmacy inside"
     }
   ]

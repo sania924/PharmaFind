@@ -2,6 +2,9 @@ import { getMedicines } from '@/lib/data';
 import { MedicineCard } from '@/app/components/MedicineCard';
 import { TextField, FormControl, InputLabel, Select, MenuItem, Button, Card, Typography, Box } from '@mui/material';
 import { Search } from '@mui/icons-material';
+import { getAllPharmacies } from '@/lib/firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '@/lib/firebase/config';
 
 export default async function MedicinesPage({
   searchParams,
@@ -9,15 +12,28 @@ export default async function MedicinesPage({
   searchParams?: {
     query?: string;
     category?: string;
+    pharmacy?: string;
   };
 }) {
   const params = await searchParams;
   const query = params?.query || '';
   const category = params?.category || 'all';
+  const pharmacyFilter = params?.pharmacy || 'all';
 
   let medicines = await getMedicines();
+  const pharmacies = await getAllPharmacies();
 
   const categories = ['all', ...Array.from(new Set(medicines.map((m) => m.category)))];
+
+  // If pharmacy filter is selected, only show medicines available at that pharmacy
+  if (pharmacyFilter && pharmacyFilter !== 'all') {
+    const inventorySnapshot = await getDocs(collection(db, 'inventory'));
+    const inventoryAtPharmacy = inventorySnapshot.docs
+      .filter((doc) => doc.data().pharmacyId === pharmacyFilter && doc.data().stock > 0)
+      .map((doc) => doc.data().medicineId);
+
+    medicines = medicines.filter((m) => inventoryAtPharmacy.includes(m.id));
+  }
 
   if (query) {
     medicines = medicines.filter((m) =>
@@ -63,6 +79,17 @@ export default async function MedicinesPage({
                   ))}
                 </Select>
               </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>Pharmacy Location</InputLabel>
+                <Select name="pharmacy" defaultValue={pharmacyFilter} label="Pharmacy Location">
+                  <MenuItem value="all">All Pharmacies</MenuItem>
+                  {pharmacies.map((pharmacy) => (
+                    <MenuItem key={pharmacy.id} value={pharmacy.id}>
+                      {pharmacy.name} - {pharmacy.city}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
               <Button type="submit" variant="contained" fullWidth>
                 Apply Filters
               </Button>
@@ -74,6 +101,13 @@ export default async function MedicinesPage({
           <Typography variant="h3" component="h1" gutterBottom>
             {category === 'all' ? 'All Medicines' : category}
           </Typography>
+          {(query || pharmacyFilter !== 'all') && (
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+              {medicines.length} result{medicines.length !== 1 ? 's' : ''} found
+              {query && ` for "${query}"`}
+              {pharmacyFilter !== 'all' && ` at ${pharmacies.find(p => p.id === pharmacyFilter)?.name}`}
+            </Typography>
+          )}
           {medicines.length > 0 ? (
             <Box
               sx={{

@@ -51,3 +51,12 @@ export type CartItem = {
   pharmacyId: string;
   quantity: number;
 };
+
+export type User = {
+  id: string;
+  email: string;
+  password: string; // hashed password
+  name: string;
+  role: 'admin' | 'user';
+  createdAt: string;
+};

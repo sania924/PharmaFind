@@ -2,16 +2,21 @@
 
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { CartProvider } from '@/context/cart-context';
+import { SessionProvider } from 'next-auth/react';
+import { NavigationProgress } from './NavigationProgress';
 
 const theme = createTheme();
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <CartProvider>
-        {children}
-      </CartProvider>
-    </ThemeProvider>
+    <SessionProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NavigationProgress />
+        <CartProvider>
+          {children}
+        </CartProvider>
+      </ThemeProvider>
+    </SessionProvider>
   );
 }

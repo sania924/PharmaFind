@@ -12,6 +12,9 @@ import {
   Box,
 } from "@mui/material";
 import { ExpandMore, ShoppingCart } from "@mui/icons-material";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import SuccessAlert from "./SuccessAlert";
 
 // Helper to format currency in GBP
 const formatCurrency = (amount: number) => {
@@ -22,7 +25,13 @@ const formatCurrency = (amount: number) => {
 };
 
 export default async function OrdersPage() {
-  const orders = await getOrdersForUser("u1"); // Assuming a single user for demo
+  const session = await auth();
+
+  if (!session || !session.user) {
+    redirect('/login');
+  }
+
+  const orders = await getOrdersForUser(session.user.id);
 
   if (orders.length === 0) {
     return (
@@ -40,6 +49,7 @@ export default async function OrdersPage() {
 
   return (
     <Box className="container mx-auto px-4 md:px-6 py-8">
+      <SuccessAlert />
       <Typography variant="h3" component="h1" className="font-bold mb-6">
         My Orders
       </Typography>

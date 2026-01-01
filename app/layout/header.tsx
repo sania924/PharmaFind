@@ -1,15 +1,18 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Button, IconButton, Box, Drawer, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Badge } from '@mui/material';
-import { Medication, ShoppingCart, Menu } from '@mui/icons-material';
+import { AppBar, Toolbar, Button, IconButton, Box, Drawer, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Badge, Avatar, Menu as MuiMenu, MenuItem, Typography, Chip } from '@mui/material';
+import { Medication, ShoppingCart, Menu, Logout, Person, AdminPanelSettings } from '@mui/icons-material';
 import Link from 'next/link';
 import { useCart } from '@/context/cart-context';
+import { useSession, signOut } from 'next-auth/react';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { getTotalItems } = useCart();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +21,19 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = async () => {
+    handleMenuClose();
+    await signOut({ callbackUrl: '/' });
+  };
 
   return (
     <AppBar
@@ -85,18 +101,67 @@ const Header = () => {
           >
             Contact
           </Button>
-          <Button
-            component={Link}
-            href="/admin/dashboard"
-            className="text-gray-700 font-semibold px-4 py-2 transition-all duration-300 hover:text-blue-600 hover:-translate-y-1 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-1 after:left-1/2 after:transform after:-translate-x-1/2 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-3/4"
-          >
-            Admin
-          </Button>
+          {session?.user?.role === 'admin' && (
+            <Button
+              component={Link}
+              href="/admin/dashboard"
+              className="text-gray-700 font-semibold px-4 py-2 transition-all duration-300 hover:text-blue-600 hover:-translate-y-1 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-1 after:left-1/2 after:transform after:-translate-x-1/2 after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-3/4"
+            >
+              Admin
+            </Button>
+          )}
           <IconButton component={Link} href="/routes/cart" sx={{ color: '#374151', '&:hover': { color: '#2563eb' } }} className="ml-2">
             <Badge badgeContent={getTotalItems()} color="primary">
               <ShoppingCart />
             </Badge>
           </IconButton>
+
+          {session ? (
+            <>
+              <IconButton onClick={handleMenuOpen} sx={{ ml: 1 }}>
+                <Avatar sx={{ bgcolor: 'primary.main', width: 36, height: 36 }}>
+                  {session.user?.name?.charAt(0).toUpperCase()}
+                </Avatar>
+              </IconButton>
+              <MuiMenu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              >
+                <Box sx={{ px: 2, py: 1, borderBottom: '1px solid #e0e0e0' }}>
+                  <Typography variant="subtitle2" fontWeight="bold">
+                    {session.user?.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
+                    {session.user?.email}
+                  </Typography>
+                  <Chip
+                    label={session.user?.role === 'admin' ? 'Admin' : 'User'}
+                    size="small"
+                    color={session.user?.role === 'admin' ? 'secondary' : 'primary'}
+                    icon={session.user?.role === 'admin' ? <AdminPanelSettings /> : <Person />}
+                  />
+                </Box>
+                <MenuItem onClick={handleLogout}>
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </MuiMenu>
+            </>
+          ) : (
+            <Button
+              component={Link}
+              href="/login"
+              variant="contained"
+              sx={{ ml: 2 }}
+            >
+              Login
+            </Button>
+          )}
         </Box>
         <IconButton
           onClick={() => setDrawerOpen(true)}
@@ -148,11 +213,13 @@ const Header = () => {
                 <ListItemText primary="Contact" />
               </ListItemButton>
             </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton component={Link} href="/admin/dashboard" onClick={() => setDrawerOpen(false)}>
-                <ListItemText primary="Admin" />
-              </ListItemButton>
-            </ListItem>
+            {session?.user?.role === 'admin' && (
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/admin/dashboard" onClick={() => setDrawerOpen(false)}>
+                  <ListItemText primary="Admin" />
+                </ListItemButton>
+              </ListItem>
+            )}
             <ListItem disablePadding>
               <ListItemButton component={Link} href="/routes/cart" onClick={() => setDrawerOpen(false)}>
                 <ListItemIcon>
@@ -163,6 +230,45 @@ const Header = () => {
                 <ListItemText primary={`Cart ${getTotalItems() > 0 ? `(${getTotalItems()})` : ''}`} />
               </ListItemButton>
             </ListItem>
+
+            {session ? (
+              <>
+                <ListItem sx={{ borderTop: '1px solid #e0e0e0', mt: 1, pt: 2 }}>
+                  <Box>
+                    <Typography variant="subtitle2" fontWeight="bold">
+                      {session.user?.name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {session.user?.email}
+                    </Typography>
+                    <Chip
+                      label={session.user?.role === 'admin' ? 'Admin' : 'User'}
+                      size="small"
+                      color={session.user?.role === 'admin' ? 'secondary' : 'primary'}
+                      icon={session.user?.role === 'admin' ? <AdminPanelSettings /> : <Person />}
+                      sx={{ mt: 1 }}
+                    />
+                  </Box>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton onClick={handleLogout}>
+                    <ListItemIcon>
+                      <Logout />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" />
+                  </ListItemButton>
+                </ListItem>
+              </>
+            ) : (
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/login" onClick={() => setDrawerOpen(false)}>
+                  <ListItemIcon>
+                    <Person />
+                  </ListItemIcon>
+                  <ListItemText primary="Login" />
+                </ListItemButton>
+              </ListItem>
+            )}
           </List>
         </Box>
       </Drawer>

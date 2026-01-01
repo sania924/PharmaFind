@@ -3,6 +3,7 @@
 import { useCart } from "@/context/cart-context";
 import { getMedicineById, getPharmacyById, getInventoryItem } from "@/lib/data";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -38,6 +39,7 @@ export default function CartPage() {
   const { items, updateQuantity, removeFromCart, clearCart } = useCart();
   const [enrichedCart, setEnrichedCart] = useState<EnrichedCartItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const enrichCart = async () => {
@@ -211,12 +213,10 @@ export default function CartPage() {
               <Button
                 variant="contained"
                 fullWidth
-                onClick={() => {
-                  alert("Order placed! (This is a demo)");
-                  clearCart();
-                }}
+                size="large"
+                onClick={() => router.push('/routes/checkout')}
               >
-                Place Order
+                Proceed to Checkout
               </Button>
 
               <Button

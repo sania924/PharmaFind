@@ -5,6 +5,7 @@ import Services from './Services';
 import FeaturedMedicines from './FeaturedMedicines';
 import LatestMedicines from './LatestMedicines';
 import Offers from './Offers';
+import PharmacyMapSection from './PharmacyMapSection';
 import Blog from './Blog';
 import Testimonials from './testimonals';
 import ContactSection from './ContactSection';
@@ -23,6 +24,7 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
       <FeaturedMedicines />
       <LatestMedicines />
       <Offers />
+      <PharmacyMapSection />
       <Blog />
       <Testimonials />
       <ContactSection />
@@ -34,4 +36,6 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
     </>
   );
 }
+
+
 
