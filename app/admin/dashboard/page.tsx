@@ -177,7 +177,7 @@ export default function AdminDashboardPage() {
         <StatCard
           title="Total Revenue"
           value={formatGBP(totalRevenue)}
-          subtitle={`${revenueChange > 0 ? '+' : ''}${revenueChange}% from yesterday`}
+          subtitle={`${Number(revenueChange) > 0 ? '+' : ''}${revenueChange}% from yesterday`}
           icon={<CurrencyPound />}
         />
 
