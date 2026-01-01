@@ -9,11 +9,11 @@ import { db } from '@/lib/firebase/config';
 export default async function MedicinesPage({
   searchParams,
 }: {
-  searchParams?: {
+  searchParams?: Promise<{
     query?: string;
     category?: string;
     pharmacy?: string;
-  };
+  }>;
 }) {
   const params = await searchParams;
   const query = params?.query || '';
