@@ -13,6 +13,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase (only once)
+// This will work during build but may have placeholder values
+// The actual initialization happens on the client side
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
 // Initialize services

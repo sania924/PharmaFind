@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { CartProvider } from '@/context/cart-context';
 import { SessionProvider } from 'next-auth/react';
 import { NavigationProgress } from './NavigationProgress';
+import { Suspense } from 'react';
 
 const theme = createTheme();
 
@@ -12,7 +13,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <SessionProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <NavigationProgress />
+        <Suspense fallback={null}>
+          <NavigationProgress />
+        </Suspense>
         <CartProvider>
           {children}
         </CartProvider>

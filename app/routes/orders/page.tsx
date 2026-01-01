@@ -1,5 +1,6 @@
 import { getOrdersForUser } from "@/lib/data";
 import { format } from "date-fns";
+import { Suspense } from "react";
 import {
   Accordion,
   AccordionSummary,
@@ -49,7 +50,9 @@ export default async function OrdersPage() {
 
   return (
     <Box className="container mx-auto px-4 md:px-6 py-8">
-      <SuccessAlert />
+      <Suspense fallback={null}>
+        <SuccessAlert />
+      </Suspense>
       <Typography variant="h3" component="h1" className="font-bold mb-6">
         My Orders
       </Typography>
