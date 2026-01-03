@@ -1,0 +1,86 @@
+rules_version = '2';
+
+// Firestore Security Rules for PharmFind
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      // Users can read their own data, admins can read all
+      allow read: if isOwner(userId) || isAdmin();
+
+      // Only admins can create users (during registration, use Admin SDK)
+      allow create: if isAdmin();
+
+      // Users can update their own data (except role), admins can update all
+      allow update: if (isOwner(userId) && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role']))
+                       || isAdmin();
+
+      // Only admins can delete users
+      allow delete: if isAdmin();
+    }
+
+    // Pharmacies collection
+    match /pharmacies/{pharmacyId} {
+      // Everyone can read pharmacy information
+      allow read: if true;
+
+      // Only admins can create, update, or delete pharmacies
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Medicines collection
+    match /medicines/{medicineId} {
+      // Everyone can read medicine information
+      allow read: if true;
+
+      // Only admins can create, update, or delete medicines
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Inventory collection
+    match /inventory/{inventoryId} {
+      // Everyone can read inventory to see stock levels
+      allow read: if true;
+
+      // Only admins can manage inventory
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Orders collection
+    match /orders/{orderId} {
+      // Users can read their own orders, admins can read all
+      allow read: if isAuthenticated() &&
+                     (resource.data.userId == request.auth.uid || isAdmin());
+
+      // Authenticated users can create orders for themselves
+      allow create: if isAuthenticated() &&
+                       request.resource.data.userId == request.auth.uid;
+
+      // Only admins can update orders (status changes)
+      allow update: if isAdmin();
+
+      // Only admins can delete orders
+      allow delete: if isAdmin();
+    }
+
+    // Deny all other collections by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

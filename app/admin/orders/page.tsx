@@ -44,6 +44,12 @@ function serializeDoc(data: any): any {
       serialized[key] = value;
     }
   }
+
+  // Map totalAmount to total for backward compatibility
+  if ('totalAmount' in serialized && !('total' in serialized)) {
+    serialized.total = serialized.totalAmount;
+  }
+
   return serialized;
 }
 

@@ -180,10 +180,14 @@ export async function deleteInventoryItem(pharmacyId: string, medicineId: string
 export async function getOrdersByUser(userId: string): Promise<Order[]> {
   const q = query(collection(db, 'orders'), where('userId', '==', userId));
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...serializeTimestamps(doc.data()),
-  })) as Order[];
+  return querySnapshot.docs.map((doc) => {
+    const data = serializeTimestamps(doc.data());
+    return {
+      id: doc.id,
+      ...data,
+      total: data.totalAmount || data.total || 0, // Map totalAmount to total
+    };
+  }) as Order[];
 }
 
 export async function getOrderById(orderId: string): Promise<Order | null> {
@@ -191,9 +195,11 @@ export async function getOrderById(orderId: string): Promise<Order | null> {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
+    const data = serializeTimestamps(docSnap.data());
     return {
       id: docSnap.id,
-      ...serializeTimestamps(docSnap.data()),
+      ...data,
+      total: data.totalAmount || data.total || 0, // Map totalAmount to total
     } as Order;
   }
   return null;
@@ -201,10 +207,14 @@ export async function getOrderById(orderId: string): Promise<Order | null> {
 
 export async function getAllOrders(): Promise<Order[]> {
   const querySnapshot = await getDocs(collection(db, 'orders'));
-  return querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...serializeTimestamps(doc.data()),
-  })) as Order[];
+  return querySnapshot.docs.map((doc) => {
+    const data = serializeTimestamps(doc.data());
+    return {
+      id: doc.id,
+      ...data,
+      total: data.totalAmount || data.total || 0, // Map totalAmount to total
+    };
+  }) as Order[];
 }
 
 export async function updateOrderStatus(orderId: string, status: string): Promise<void> {

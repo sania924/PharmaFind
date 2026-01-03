@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Building, Archive } from "lucide-react";
+import { LayoutDashboard, Building, Archive, Pill } from "lucide-react";
 
 const navLinks = [
   { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/pharmacies", label: "Pharmacies", icon: Building },
+  { href: "/admin/medicines", label: "Medicines", icon: Pill },
   { href: "/admin/inventory", label: "Inventory", icon: Archive },
 ];
 
