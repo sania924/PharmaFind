@@ -102,13 +102,27 @@ export default function CheckoutPage() {
       return;
     }
 
+    // Verify we have user ID
+    if (!session.user.id) {
+      console.error('Session user ID is missing!', session.user);
+      setError('Session error: User ID not found. Please try logging out and logging back in.');
+      return;
+    }
+
     setLoading(true);
     setError('');
 
     try {
+      console.log('=== CHECKOUT DEBUG ===');
+      console.log('Session user:', session.user);
+      console.log('Session user ID:', session.user.id);
+      console.log('Session user email:', session.user.email);
+      console.log('Cart items:', enrichedCart);
+      console.log('Total:', total);
+
       // Create order with stock reduction
       const orderId = await createOrderWithStockReduction(
-        session.user.email, // Using email as userId (as per your auth setup)
+        session.user.id, // Use correct user ID
         enrichedCart.map((item) => ({
           medicineId: item.medicineId,
           pharmacyId: item.pharmacyId,
@@ -117,6 +131,9 @@ export default function CheckoutPage() {
         })),
         total
       );
+
+      console.log('Order created with ID:', orderId);
+      console.log('=== END CHECKOUT DEBUG ===');
 
       // Clear cart on success
       clearCart();

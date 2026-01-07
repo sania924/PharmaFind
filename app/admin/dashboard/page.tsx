@@ -42,6 +42,12 @@ function serializeDoc(data: any): any {
       serialized[key] = value;
     }
   }
+
+  // Map totalAmount to total for backward compatibility
+  if ('totalAmount' in serialized && !('total' in serialized)) {
+    serialized.total = serialized.totalAmount;
+  }
+
   return serialized;
 }
 
@@ -106,7 +112,7 @@ export default function AdminDashboardPage() {
   // Calculate statistics
   const totalRevenue = orders
     .filter(o => o.status === 'Completed')
-    .reduce((sum, order) => sum + order.total, 0);
+    .reduce((sum, order) => sum + (order.total || 0), 0);
 
   const totalOrders = orders.length;
   const pendingOrders = orders.filter(o => o.status === 'Pending').length;
@@ -130,7 +136,7 @@ export default function AdminDashboardPage() {
       if (dayData) {
         dayData.orders += 1;
         if (order.status === 'Completed') {
-          dayData.revenue += order.total;
+          dayData.revenue += (order.total || 0);
         }
       }
     }

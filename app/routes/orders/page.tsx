@@ -25,6 +25,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Alert,
 } from "@mui/material";
 import { ExpandMore, ShoppingCart, Store, CalendarToday, Receipt, LocalShipping } from "@mui/icons-material";
 import SuccessAlert from "./SuccessAlert";
@@ -51,19 +52,17 @@ function OrdersContent() {
       return;
     }
 
-    if (status === 'authenticated' && session?.user?.email) {
+    if (status === 'authenticated' && session?.user?.id) {
       fetchOrders();
     }
   }, [status, session, router, searchParams]);
 
   const fetchOrders = async () => {
-    if (!session?.user?.email) return;
+    if (!session?.user?.id) return;
 
     try {
       setLoading(true);
-      console.log('[Orders Page] Fetching orders for user:', session.user.email);
-      const fetchedOrders = await getOrdersForUser(session.user.email);
-      console.log('[Orders Page] Fetched orders:', fetchedOrders.length, 'orders');
+      const fetchedOrders = await getOrdersForUser(session.user.id);
       setOrders(fetchedOrders);
     } catch (error) {
       console.error('Error fetching orders:', error);
@@ -88,9 +87,21 @@ function OrdersContent() {
         <Typography variant="h3" component="h1" className="font-bold mb-2">
           No Orders Found
         </Typography>
-        <Typography variant="body1" color="text.secondary">
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
           You haven't placed any orders yet.
         </Typography>
+        {session?.user?.id && (
+          <Alert severity="info" sx={{ mt: 3, maxWidth: 600, mx: 'auto' }}>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              <strong>Debug Info:</strong>
+            </Typography>
+            <Typography variant="body2" sx={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>
+              Your User ID: {session.user.id}<br />
+              Email: {session.user.email}<br />
+              Check browser console (F12) for detailed logs
+            </Typography>
+          </Alert>
+        )}
       </Box>
     );
   }

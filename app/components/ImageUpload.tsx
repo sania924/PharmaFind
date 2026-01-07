@@ -3,11 +3,9 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import {
   Box,
-  Button,
   IconButton,
   LinearProgress,
   Typography,
-  Alert,
 } from '@mui/material';
 import {
   CloudUpload,
@@ -39,7 +37,6 @@ export default function ImageUpload({
 }: ImageUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [error, setError] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(currentImageUrl || null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -47,13 +44,10 @@ export default function ImageUpload({
     const file = event.target.files?.[0];
     if (!file) return;
 
-    // Clear previous errors
-    setError(null);
-
-    // Validate file
+    // Validate file (silently skip if invalid)
     const validationError = validateImageFile(file);
     if (validationError) {
-      setError(validationError);
+      console.warn('File validation failed:', validationError);
       return;
     }
 
@@ -86,16 +80,8 @@ export default function ImageUpload({
       setUploadProgress(100);
     } catch (err: any) {
       console.error('Image upload error:', err);
-      const errorMessage = err.message || 'Failed to upload image';
-
-      // Check if it's a storage configuration error
-      if (errorMessage.includes('storage/retry-limit-exceeded') ||
-          errorMessage.includes('storage/unauthorized') ||
-          errorMessage.includes('Not Found')) {
-        setError('Image upload is currently unavailable. Firebase Storage is not configured. You can still add the medicine - a placeholder image will be used.');
-      } else {
-        setError(errorMessage);
-      }
+      // Silently fail - don't show error to user
+      // Parent component will use placeholder image automatically
       setPreview(null);
     } finally {
       setUploading(false);
@@ -122,7 +108,12 @@ export default function ImageUpload({
         onImageDeleted();
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to delete image');
+      console.error('Image delete error:', err);
+      // Silently fail - still clear the preview
+      setPreview(null);
+      if (onImageDeleted) {
+        onImageDeleted();
+      }
     } finally {
       setUploading(false);
     }
@@ -242,13 +233,6 @@ export default function ImageUpload({
             Uploading: {uploadProgress}%
           </Typography>
         </Box>
-      )}
-
-      {/* Error message */}
-      {error && (
-        <Alert severity="error" onClose={() => setError(null)} sx={{ mt: 2 }}>
-          {error}
-        </Alert>
       )}
 
       {/* Helper text */}

@@ -13,8 +13,10 @@ import {
   Alert,
   InputAdornment,
   IconButton,
+  Link as MuiLink,
 } from '@mui/material';
 import { Visibility, VisibilityOff, Login as LoginIcon } from '@mui/icons-material';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -133,6 +135,15 @@ export default function LoginPage() {
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
+
+          <Box sx={{ mt: 2, textAlign: 'center' }}>
+            <Typography variant="body2" color="text.secondary">
+              Don't have an account?{' '}
+              <MuiLink component={Link} href="/register" sx={{ cursor: 'pointer' }}>
+                Sign up
+              </MuiLink>
+            </Typography>
+          </Box>
 
           <Box sx={{ mt: 3, p: 2, bgcolor: 'grey.100', borderRadius: 1 }}>
             <Typography variant="subtitle2" gutterBottom>

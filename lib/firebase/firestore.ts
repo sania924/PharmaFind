@@ -180,6 +180,7 @@ export async function deleteInventoryItem(pharmacyId: string, medicineId: string
 export async function getOrdersByUser(userId: string): Promise<Order[]> {
   const q = query(collection(db, 'orders'), where('userId', '==', userId));
   const querySnapshot = await getDocs(q);
+
   return querySnapshot.docs.map((doc) => {
     const data = serializeTimestamps(doc.data());
     return {
@@ -252,4 +253,49 @@ export async function getUserById(id: string): Promise<User | null> {
     } as User;
   }
   return null;
+}
+
+export async function createUser(userData: {
+  email: string;
+  password: string;
+  name: string;
+  role?: 'admin' | 'user';
+}): Promise<User> {
+  // Check if user already exists
+  const existingUser = await getUserByEmail(userData.email);
+  if (existingUser) {
+    throw new Error('User with this email already exists');
+  }
+
+  const userDoc = {
+    email: userData.email,
+    password: userData.password, // Should be hashed before calling this function
+    name: userData.name,
+    role: userData.role || 'user',
+    createdAt: serverTimestamp(),
+  };
+
+  const docRef = await addDoc(collection(db, 'users'), userDoc);
+
+  return {
+    id: docRef.id,
+    ...userDoc,
+    createdAt: new Date().toISOString(),
+  } as User;
+}
+
+export async function updateUserPassword(userId: string, hashedPassword: string): Promise<void> {
+  const docRef = doc(db, 'users', userId);
+  await updateDoc(docRef, {
+    password: hashedPassword,
+    updatedAt: serverTimestamp(),
+  });
+}
+
+export async function getAllUsers(): Promise<User[]> {
+  const querySnapshot = await getDocs(collection(db, 'users'));
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...serializeTimestamps(doc.data()),
+  })) as User[];
 }

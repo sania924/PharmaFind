@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Building, Archive, Pill } from "lucide-react";
+import { LayoutDashboard, Building, Archive, Pill, Users, ShoppingCart } from "lucide-react";
 
 const navLinks = [
   { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/pharmacies", label: "Pharmacies", icon: Building },
   { href: "/admin/medicines", label: "Medicines", icon: Pill },
   { href: "/admin/inventory", label: "Inventory", icon: Archive },
+  { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/admin/users", label: "Users", icon: Users },
 ];
 
 export function AdminSidebar() {

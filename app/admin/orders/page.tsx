@@ -65,14 +65,25 @@ export default function AdminOrdersPage() {
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' as 'success' | 'error' });
 
   useEffect(() => {
+    console.log('=== ADMIN ORDERS PAGE: Setting up listener ===');
     const q = query(collection(db, 'orders'), orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {
-        const ordersData: Order[] = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...serializeDoc(doc.data()),
-        } as Order));
+        console.log('=== ADMIN ORDERS: Snapshot received ===');
+        console.log('Number of documents:', snapshot.docs.length);
+
+        const ordersData: Order[] = snapshot.docs.map(doc => {
+          const rawData = doc.data();
+          const serialized = serializeDoc(rawData);
+          console.log('Order document:', { id: doc.id, rawData, serialized });
+          return {
+            id: doc.id,
+            ...serialized,
+          } as Order;
+        });
+
+        console.log('Processed orders:', ordersData);
         setOrders(ordersData);
         setLoading(false);
       },
@@ -274,16 +285,16 @@ export default function AdminOrdersPage() {
               ) : (
                 filteredOrders.map((order) => (
                   <TableRow key={order.id} hover>
-                    <TableCell>{order.id.slice(0, 8)}...</TableCell>
+                    <TableCell>{order.id?.slice(0, 8) || 'N/A'}...</TableCell>
                     <TableCell>
-                      {order.createdAt && format(new Date(order.createdAt), 'MMM d, yyyy')}
+                      {order.createdAt ? format(new Date(order.createdAt), 'MMM d, yyyy') : 'N/A'}
                     </TableCell>
-                    <TableCell>{order.userId.slice(0, 10)}...</TableCell>
-                    <TableCell>{order.items.length}</TableCell>
-                    <TableCell>{formatCurrency(order.total)}</TableCell>
+                    <TableCell>{order.userId?.slice(0, 10) || 'N/A'}...</TableCell>
+                    <TableCell>{order.items?.length || 0}</TableCell>
+                    <TableCell>{formatCurrency(order.total || 0)}</TableCell>
                     <TableCell>
                       <Chip
-                        label={order.status}
+                        label={order.status || 'Unknown'}
                         color={getStatusColor(order.status)}
                         size="small"
                       />
