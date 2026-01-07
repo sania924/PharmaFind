@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     console.log('[Debug Check Orders] Starting...');
 
